@@ -27,6 +27,6 @@ namespace FitCore.Data.Models
         public DateTime Birthday { get; set; }
 
         //relatie: un membru poate avea mai multe rezervari
-        public ICollection<Booking> Bookings { get; set; }
+        public ICollection<Booking>? Bookings { get; set; }
     }
 }

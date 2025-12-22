@@ -16,10 +16,10 @@ namespace FitCore.Data.Models
 
         //relatie: legatura cu membrul (fk)
         public int MemberId { get; set; }
-        public Member Member { get; set; }
+        public Member? Member { get; set; }
 
         //relatie: legatura cu clasa de fitness (fk)
         public int GymClassId { get; set; }
-        public GymClass GymClass { get; set; }
+        public GymClass? GymClass { get; set; }
     }
 }

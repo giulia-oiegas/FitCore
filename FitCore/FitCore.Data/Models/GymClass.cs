@@ -24,9 +24,9 @@ namespace FitCore.Data.Models
 
         //relatie: legatura cu antrenorul (fk)
         public int TrainerId { get; set; }
-        public Trainer Trainer { get; set; }
+        public Trainer? Trainer { get; set; }
 
         //relatie: o clasa poate avea mai multe rezervari
-        public ICollection<Booking> Bookings { get; set; }
+        public ICollection<Booking>? Bookings { get; set; }
     }
 }
