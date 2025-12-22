@@ -1,5 +1,9 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+//adaugam conexiunea la baza de date
+builder.Services.AddDbContext<FitCore.Data.FitCoreContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FitCoreContext") ?? throw new InvalidOperationException("Connection string 'FitCoreContext' not found.")));
 // Add services to the container.
 builder.Services.AddRazorPages();
 
