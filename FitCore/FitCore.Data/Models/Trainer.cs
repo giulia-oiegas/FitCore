@@ -18,6 +18,6 @@ namespace FitCore.Data.Models
         public string Specialization { get; set; } //ex: yoga, bodybuilding, cardio etc.
       
         //relatie: un antrenor poate tine mai multe clase
-        public ICollection<GymClass> GymClasses { get; set; }
+        public ICollection<GymClass>? GymClasses { get; set; }
     }
 }
