@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using FitCore.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FitCore.Data
 {
-    public class FitCoreContext : DbContext
+    public class FitCoreContext : IdentityDbContext
     {
         public FitCoreContext()
         {
@@ -37,6 +38,7 @@ namespace FitCore.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             //aici se configureaza relatii speciale daca e cazul
             //de ex pretul sa aiba 2 zecimale
             modelBuilder.Entity<MembershipType>()

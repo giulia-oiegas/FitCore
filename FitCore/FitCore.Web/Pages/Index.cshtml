@@ -1,10 +1,42 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mb-5">
+    <h1 class="display-4" style="border:none;">Bun venit la <span style="color:#FF6B00; font-weight:bold;">FitCore</span> Admin</h1>
+    <p>Panoul de administrare al salii tale.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-dark text-white border-warning mb-3">
+            <div class="card-body text-center">
+                <h3 style="border:none;">Membri Inscrisi</h3>
+                <h1 class="display-1 text-warning">@Model.TotalMembers</h1>
+                <a asp-page="/Members/Index" class="btn btn-outline-warning mt-3">Gestioneaza Membrii</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-dark text-white border-info mb-3">
+            <div class="card-body text-center">
+                <h3 style="border:none;">Antrenori Activi</h3>
+                <h1 class="display-1 text-info">@Model.TotalTrainers</h1>
+                <a asp-page="/Trainers/Index" class="btn btn-outline-info mt-3">Vezi Echipa</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-dark text-white border-success mb-3">
+            <div class="card-body text-center">
+                <h3 style="border:none;">Clase Programate</h3>
+                <h1 class="display-1 text-success">@Model.TotalClasses</h1>
+                <a asp-page="/GymClasses/Index" class="btn btn-outline-success mt-3">Vezi Orarul</a>
+            </div>
+        </div>
+    </div>
 </div>
