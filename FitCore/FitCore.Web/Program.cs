@@ -7,6 +7,13 @@ builder.Services.AddDbContext<FitCore.Data.FitCoreContext>(options =>
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+//adaugam suport pt api si ignoram buclele infinite (ex: relatia many to many antrenor <-> clasa)
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {     
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,5 +32,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapControllers();
 
 app.Run();
