@@ -2,39 +2,45 @@
 @model FitCore.Web.Pages.Trainers.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Adauga Antrenor";
 }
 
-<h1>Create</h1>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="bg-white p-5 rounded shadow-sm">
 
-<h4>Trainer</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Trainer.Name" class="control-label"></label>
-                <input asp-for="Trainer.Name" class="form-control" aria-required="true"/>
-                <span asp-validation-for="Trainer.Name" class="text-danger"></span>
+            <div class="mb-4 text-center">
+                <h2 class="fw-bold text-dark">Adaugă Antrenor</h2>
+                <p class="text-muted">Completează detaliile noului membru al echipei.</p>
             </div>
-            <div class="form-group">
-                <label asp-for="Trainer.Specialization" class="control-label"></label>
-                <input asp-for="Trainer.Specialization" class="form-control" />
-                <span asp-validation-for="Trainer.Specialization" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Trainer.Name" class="control-label fw-bold mb-1">Nume Complet</label>
+                    <input asp-for="Trainer.Name" class="form-control form-control-lg" placeholder="ex: Ion Popescu" />
+                    <span asp-validation-for="Trainer.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Trainer.Specialization" class="control-label fw-bold mb-1">Specializare</label>
+                    <input asp-for="Trainer.Specialization" class="form-control form-control-lg" placeholder="ex: Fitness, Yoga" />
+                    <span asp-validation-for="Trainer.Specialization" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Salvează Antrenorul</button>
+                    <a asp-page="Index" class="btn btn-outline-secondary">Anulează</a>
+                </div>
+            </form>
+        </div>
+
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -2,59 +2,60 @@
 @model FitCore.Web.Pages.GymClasses.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Clase";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-4 bg-white p-4 rounded shadow-sm">
+    <h2 class="m-0 text-dark" style="border:none;">ORAR CLASE</h2>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+    <div class="d-flex gap-2">
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="fas fa-calendar-plus"></i> Programeaza Clasa
+        </a>
+    </div>
+</div>
+
+<table class="table table-hover bg-white">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.GymClass[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GymClass[0].Schedule)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GymClass[0].DurationMinutes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GymClass[0].MaxCapacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GymClass[0].Trainer)
-            </th>
-            <th></th>
+            <th>Nume Clasa</th>
+            <th>Data si Ora</th>
+            <th>Durata (min)</th>
+            <th>Antrenor</th>
+            <th class="text-center">Capacitate</th>
+            <th class="text-center">Aciuni</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.GymClass) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Schedule)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DurationMinutes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxCapacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trainer.Name)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.GymClass)
+        {
+            <tr>
+                <td class="fw-bold">@item.Name</td>
+                <td>
+                    <i class="far fa-clock text-secondary me-1"></i>
+                    @item.Schedule.ToString("dd MMM, HH:mm")
+                </td>
+                <td>@item.DurationMinutes min</td>
+                <td>
+                    @if (item.Trainer != null)
+                    {
+                        <span class="p-6 text-dark">@item.Trainer.Name</span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">-</span>
+                    }
+                </td>
+                <td class="text-center">@item.MaxCapacity pers.</td>
+                <td class="text-center">
+                    <a asp-page="./ClassAttendees" asp-route-id="@item.Id" class="btn btn-sm btn-dark me-1" title="Vezi lista participanți">
+                        <i class="fas fa-users"></i>
+                    </a>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1">Detalii</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger border-0">Sterge</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -2,53 +2,65 @@
 @model FitCore.Web.Pages.GymClasses.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Programează Clasă";
 }
 
-<h1>Create</h1>
+<div class="row justify-content-center">
+    <div class="col-md-6">
 
-<h4>GymClass</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="GymClass.Name" class="control-label"></label>
-                <input asp-for="GymClass.Name" class="form-control" aria-required="true"/>
-                <span asp-validation-for="GymClass.Name" class="text-danger"></span>
+        <div class="bg-white p-5 rounded shadow-sm">
+
+            <div class="mb-4 text-center">
+                <h2 class="fw-bold text-dark">Programează o Clasă</h2>
+                <p class="text-muted">Adaugă o nouă sesiune în orarul sălii.</p>
             </div>
-            <div class="form-group">
-                <label asp-for="GymClass.Schedule" class="control-label"></label>
-                <input asp-for="GymClass.Schedule" class="form-control" />
-                <span asp-validation-for="GymClass.Schedule" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GymClass.DurationMinutes" class="control-label"></label>
-                <input asp-for="GymClass.DurationMinutes" class="form-control" />
-                <span asp-validation-for="GymClass.DurationMinutes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GymClass.MaxCapacity" class="control-label"></label>
-                <input asp-for="GymClass.MaxCapacity" class="form-control" />
-                <span asp-validation-for="GymClass.MaxCapacity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GymClass.TrainerId" class="control-label"></label>
-                <select asp-for="GymClass.TrainerId" class ="form-control" asp-items="ViewBag.TrainerId" ></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="GymClass.Name" class="control-label fw-bold mb-1">Denumire Clasă</label>
+                    <input asp-for="GymClass.Name" class="form-control form-control-lg" placeholder="ex: Yoga de dimineață" />
+                    <span asp-validation-for="GymClass.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="GymClass.Schedule" class="control-label fw-bold mb-1">Data și Ora Începerii</label>
+                    <input asp-for="GymClass.Schedule" class="form-control form-control-lg" type="datetime-local" />
+                    <span asp-validation-for="GymClass.Schedule" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="GymClass.DurationMinutes" class="control-label fw-bold mb-1">Durată (min)</label>
+                        <input asp-for="GymClass.DurationMinutes" class="form-control form-control-lg" placeholder="60" />
+                        <span asp-validation-for="GymClass.DurationMinutes" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="GymClass.MaxCapacity" class="control-label fw-bold mb-1">Capacitate Max.</label>
+                        <input asp-for="GymClass.MaxCapacity" class="form-control form-control-lg" placeholder="20" />
+                        <span asp-validation-for="GymClass.MaxCapacity" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="GymClass.TrainerId" class="control-label fw-bold mb-1">Antrenor Coordonator</label>
+                    <select asp-for="GymClass.TrainerId" class="form-select form-select-lg" asp-items="ViewBag.TrainerId">
+                        <option value="" disabled selected>-- Alege un antrenor --</option>
+                    </select>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Salvează în Orar</button>
+                    <a asp-page="Index" class="btn btn-outline-secondary">Anulează</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

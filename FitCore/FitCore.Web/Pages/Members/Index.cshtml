@@ -2,59 +2,42 @@
 @model FitCore.Web.Pages.Members.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Membri";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-4 bg-white p-4 rounded shadow-sm">
+    <h2 class="m-0 text-dark" style="border:none;">GESTIUNE MEMBRI</h2>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+    <div class="d-flex gap-2">
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Inscrie Membru Nou
+        </a>
+    </div>
+</div>
+
+<table class="table table-hover bg-white">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].Birthday)
-            </th>
-            <th></th>
+            <th>Nume Complet</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th class="text-center">Actiuni</th>
         </tr>
     </thead>
+
     <tbody>
-@foreach (var item in Model.Member) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Birthday)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Member)
+        {
+            <tr>
+                <td class="fw-bold">@item.FirstName @item.LastName</td>
+                <td>@item.Email</td>
+                <td>@item.PhoneNumber</td>
+                <td class="text-center">
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1">Detalii</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger border-0">Sterge</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

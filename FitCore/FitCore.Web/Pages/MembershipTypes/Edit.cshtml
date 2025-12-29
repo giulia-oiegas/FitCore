@@ -2,50 +2,63 @@
 @model FitCore.Web.Pages.MembershipTypes.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editează Abonament";
 }
 
-<h1>Edit</h1>
+<div class="row justify-content-center">
+    <div class="col-md-6">
 
-<h4>MembershipType</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MembershipType.Id" />
-            <div class="form-group">
-<span class="text-danger">*</span>
-                <label asp-for="MembershipType.Name" class="control-label"></label>
-                <input asp-for="MembershipType.Name" class="form-control" aria-required="true"/>
-                <span asp-validation-for="MembershipType.Name" class="text-danger"></span>
+        <div class="bg-white p-5 rounded shadow-sm">
+
+            <div class="mb-4 text-center">
+                <h2 class="fw-bold text-dark">Editează Oferta</h2>
+                <p class="text-muted">Modifică prețul sau beneficiile abonamentului.</p>
             </div>
-            <div class="form-group">
-                <label asp-for="MembershipType.DurationMonths" class="control-label"></label>
-                <input asp-for="MembershipType.DurationMonths" class="form-control" />
-                <span asp-validation-for="MembershipType.DurationMonths" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MembershipType.Price" class="control-label"></label>
-                <input asp-for="MembershipType.Price" class="form-control" />
-                <span asp-validation-for="MembershipType.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MembershipType.Description" class="control-label"></label>
-                <input asp-for="MembershipType.Description" class="form-control" />
-                <span asp-validation-for="MembershipType.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="MembershipType.Id" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="MembershipType.Name" class="control-label fw-bold mb-1">Denumire</label>
+                    <input asp-for="MembershipType.Name" class="form-control form-control-lg" />
+                    <span asp-validation-for="MembershipType.Name" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="MembershipType.Price" class="control-label fw-bold mb-1">Preț</label>
+                        <div class="input-group">
+                            <input asp-for="MembershipType.Price" class="form-control form-control-lg" />
+                            <span class="input-group-text bg-light fw-bold">RON</span>
+                        </div>
+                        <span asp-validation-for="MembershipType.Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MembershipType.DurationMonths" class="control-label fw-bold mb-1">Durată (Luni)</label>
+                        <input asp-for="MembershipType.DurationMonths" class="form-control form-control-lg" />
+                        <span asp-validation-for="MembershipType.DurationMonths" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="MembershipType.Description" class="control-label fw-bold mb-1">Descriere</label>
+                    <textarea asp-for="MembershipType.Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="MembershipType.Description" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Salvează Modificările</button>
+                    <a asp-page="./Index" class="btn btn-outline-secondary">Anulează</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
