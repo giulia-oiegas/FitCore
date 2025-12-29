@@ -21,9 +21,22 @@ namespace FitCore.Web.Pages.Trainers
 
         public IList<Trainer> Trainer { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
         public async Task OnGetAsync()
         {
-            Trainer = await _context.Trainers.ToListAsync();
+            //luam toti antrenorii
+            var trainers = from t in _context.Trainers
+                           select t;
+
+            //daca exista text in bara de cautare, filtram
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                trainers = trainers.Where(s => s.Name.Contains(SearchString) || s.Specialization.Contains(SearchString));
+            }
+
+            //executam query-ul
+            Trainer = await trainers.ToListAsync();
         }
     }
 }

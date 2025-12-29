@@ -10,7 +10,12 @@
     <h2 class="m-0 text-dark" style="border:none;">GESTIUNE ANTRENORI</h2>
 
     <div class="d-flex gap-2">
-        <input type="text" class="form-control" placeholder="Search..." style="width: 200px;">
+        <form method="get" class="d-flex">
+            <input type="text" name="SearchString" value="@Model.SearchString" class="form-control" placeholder="Cauta nume..." style="width: 200px; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+            <button type="submit" class="btn btn-outline-secondary" style="border-top-left-radius: 0; border-bottom-left-radius: 0">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
 
         <a asp-page="Create" class="btn btn-primary">
             <i class="fas fa-plus"></i> Adaugă Antrenor Nou
