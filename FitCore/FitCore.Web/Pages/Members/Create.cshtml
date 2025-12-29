@@ -2,56 +2,68 @@
 @model FitCore.Web.Pages.Members.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Înscrie Membru";
 }
 
-<h1>Create</h1>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="bg-white p-5 rounded shadow-sm">
 
-<h4>Member</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Member.LastName" class="control-label"></label>
-                <input asp-for="Member.LastName" class="form-control" aria-required="true"/>
-                <span asp-validation-for="Member.LastName" class="text-danger"></span>
+            <div class="mb-4 text-center">
+                <div class="mb-3">
+                    <span class="bg-primary text-white rounded-circle p-3 d-inline-block">
+                        <i class="fas fa-user-plus fa-2x"></i>
+                    </span>
+                </div>
+                <h2 class="fw-bold text-dark">Înscrie Membru Nou</h2>
+                <p class="text-muted">Completează datele personale ale clientului.</p>
             </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Member.FirstName" class="control-label"></label>
-                <input asp-for="Member.FirstName" class="form-control" aria-required="true"/>
-                <span asp-validation-for="Member.FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Member.Email" class="control-label"></label>
-                <input asp-for="Member.Email" class="form-control" aria-required="true"/>
-                <span asp-validation-for="Member.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Member.PhoneNumber" class="control-label"></label>
-                <input asp-for="Member.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Member.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Member.Birthday" class="control-label"></label>
-                <input asp-for="Member.Birthday" class="form-control" />
-                <span asp-validation-for="Member.Birthday" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Member.LastName" class="control-label fw-bold mb-1">Nume de Familie</label>
+                        <input asp-for="Member.LastName" class="form-control form-control-lg" placeholder="ex: Popescu" />
+                        <span asp-validation-for="Member.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Member.FirstName" class="control-label fw-bold mb-1">Prenume</label>
+                        <input asp-for="Member.FirstName" class="form-control form-control-lg" placeholder="ex: Andrei" />
+                        <span asp-validation-for="Member.FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Member.Email" class="control-label fw-bold mb-1">Adresă de Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fas fa-envelope"></i></span>
+                        <input asp-for="Member.Email" class="form-control form-control-lg" placeholder="client@email.com" />
+                    </div>
+                    <span asp-validation-for="Member.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Member.PhoneNumber" class="control-label fw-bold mb-1">Număr de Telefon</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fas fa-phone"></i></span>
+                        <input asp-for="Member.PhoneNumber" class="form-control form-control-lg" placeholder="07xx xxx xxx" />
+                    </div>
+                    <span asp-validation-for="Member.PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Finalizează Înscrierea</button>
+                    <a asp-page="Index" class="btn btn-outline-secondary">Anulează</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

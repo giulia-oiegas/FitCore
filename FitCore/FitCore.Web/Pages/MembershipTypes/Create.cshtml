@@ -2,49 +2,68 @@
 @model FitCore.Web.Pages.MembershipTypes.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Adaugă Abonament";
 }
 
-<h1>Create</h1>
+<div class="row justify-content-center">
+    <div class="col-md-6">
 
-<h4>MembershipType</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="MembershipType.Name" class="control-label"></label>
-                <input asp-for="MembershipType.Name" class="form-control" aria-required="true"/>
-                <span asp-validation-for="MembershipType.Name" class="text-danger"></span>
+        <div class="bg-white p-5 rounded shadow-sm">
+
+            <div class="mb-4 text-center">
+                <span class="bg-light text-primary rounded-circle p-3 d-inline-block mb-3">
+                    <i class="fas fa-tags fa-2x"></i>
+                </span>
+                <h2 class="fw-bold text-dark">Adaugă Tip Abonament</h2>
+                <p class="text-muted">Definește o nouă ofertă pentru clienți.</p>
             </div>
-            <div class="form-group">
-                <label asp-for="MembershipType.DurationMonths" class="control-label"></label>
-                <input asp-for="MembershipType.DurationMonths" class="form-control" />
-                <span asp-validation-for="MembershipType.DurationMonths" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MembershipType.Price" class="control-label"></label>
-                <input asp-for="MembershipType.Price" class="form-control" />
-                <span asp-validation-for="MembershipType.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MembershipType.Description" class="control-label"></label>
-                <input asp-for="MembershipType.Description" class="form-control" />
-                <span asp-validation-for="MembershipType.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="MembershipType.Name" class="control-label fw-bold mb-1">Denumire Abonament</label>
+                    <input asp-for="MembershipType.Name" class="form-control form-control-lg" placeholder="ex: Full Access, Student, VIP" />
+                    <span asp-validation-for="MembershipType.Name" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="MembershipType.Price" class="control-label fw-bold mb-1">Preț (RON)</label>
+                        <div class="input-group">
+                            <input asp-for="MembershipType.Price" class="form-control form-control-lg" placeholder="0.00" />
+                            <span class="input-group-text bg-light fw-bold">RON</span>
+                        </div>
+                        <span asp-validation-for="MembershipType.Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MembershipType.DurationMonths" class="control-label fw-bold mb-1">Durată (Luni)</label>
+                        <div class="input-group">
+                            <input asp-for="MembershipType.DurationMonths" class="form-control form-control-lg" placeholder="1" />
+                            <span class="input-group-text bg-light"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <span asp-validation-for="MembershipType.DurationMonths" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="MembershipType.Description" class="control-label fw-bold mb-1">Descriere / Beneficii</label>
+                    <textarea asp-for="MembershipType.Description" class="form-control" rows="3" placeholder="Descrie ce include acest abonament..."></textarea>
+                    <span asp-validation-for="MembershipType.Description" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Creează Abonament</button>
+                    <a asp-page="Index" class="btn btn-outline-secondary">Anulează</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

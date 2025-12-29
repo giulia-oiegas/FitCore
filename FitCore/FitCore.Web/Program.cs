@@ -1,11 +1,25 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 //adaugam conexiunea la baza de date
+var connectionString = builder.Configuration.GetConnectionString("FitCoreContext") ?? throw new InvalidOperationException("Connection string 'FitCoreContext' not found.");
+
 builder.Services.AddDbContext<FitCore.Data.FitCoreContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FitCoreContext") ?? throw new InvalidOperationException("Connection string 'FitCoreContext' not found.")));
+    options.UseSqlServer(connectionString));
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    //acces restrictionat la foldere daca nu esti logat
+    options.Conventions.AuthorizeFolder("/Trainers");
+    options.Conventions.AuthorizeFolder("/Members");
+    options.Conventions.AuthorizeFolder("/GymClasses");
+    options.Conventions.AuthorizeFolder("/MembershipTypes");
+});
+
+//adaugam suport pt api si ignoram buclele infinite (ex: relatia many to many antrenor <-> clasa)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<FitCore.Data.FitCoreContext>(); 
 
 var app = builder.Build();
 
@@ -25,5 +39,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapControllers();
 
 app.Run();

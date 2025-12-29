@@ -2,41 +2,50 @@
 @model FitCore.Web.Pages.Trainers.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Antrenori";
 }
 
-<h1>Index</h1>
+<!--header al tabelului si search bar-->
+<div class="d-flex justify-content-between align-items-center mb-4 bg-white p-4 rounded shadow-sm">
+    <h2 class="m-0 text-dark" style="border:none;">GESTIUNE ANTRENORI</h2>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+    <div class="d-flex gap-2">
+        <form method="get" class="d-flex">
+            <input type="text" name="SearchString" value="@Model.SearchString" class="form-control" placeholder="Cauta nume..." style="width: 200px; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+            <button type="submit" class="btn btn-outline-secondary" style="border-top-left-radius: 0; border-bottom-left-radius: 0">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Adaugă Antrenor Nou
+        </a>
+    </div>
+</div>
+
+<table class="table table-hover bg-white">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Trainer[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trainer[0].Specialization)
-            </th>
-            <th></th>
+            <th>Nume</th>
+            <th>Specializare</th>
+            <th>Email</th>
+            <th class="text-center">Acțiuni</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Trainer) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Specialization)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Trainer)
+        {
+            <tr>
+                <td class="fw-bold">@Html.DisplayFor(modelItem => item.Name)</td>
+                <!--generare email dupa nume si prenume-->
+                <td>@Html.DisplayFor(modelItem => item.Specialization)</td>
+                <td>@item.Name.ToLower().Replace(" ", "")@("@fit.ro")</td>
+                <!--butoanele de actiune edit/delete-->
+                <td class="text-center">
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">Edit</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger text-danger border-0">Sterge</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

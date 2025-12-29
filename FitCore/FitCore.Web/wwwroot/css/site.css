@@ -1,22 +1,81 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #F4F6F9;
 }
+
+/* SIDEBAR STYLING */
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 250px;
+    margin-left: 0;
+    transition: margin 0.25s ease-out;
+    background-color: #2D3436;
+}
+
+.sidebar-heading {
+    padding: 1.5rem 1.25rem; 
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background-color: #1e2426;
+}
+
+.list-group-item {
+    padding: 1rem 1.25rem;
+    border: none; 
+    font-size: 1.1rem;
+}
+
+    .list-group-item:hover {
+        background-color: #FF6B00;
+        color: white;
+    }
+
+/* CONTINUT PRINCIPAL */
+#page-content-wrapper {
+    width: 100%;
+}
+
+/* HEADER SUPERIOR */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 15px 30px;
+}
+
+/* BUTOANE PORTOCALII (ACCENT) */
+.btn-primary {
+    background-color: #FF6B00;
+    border-color: #FF6B00;
+    color: white;
+    font-weight: 600;
+    padding: 8px 20px;
+}
+
+    .btn-primary:hover {
+        background-color: #e65a00;
+        border-color: #e65a00;
+    }
+
+/* LINKURI EDIT/STERGE */
+a {
+    text-decoration: none;
+}
+
+/* TABELE CLEAN STYLE*/
+.table {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+    .table thead th {
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+        color: #495057;
+        font-weight: 600;
+    }
+
+    .table tbody tr {
+        vertical-align: middle;
+    }
