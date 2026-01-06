@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitCore.Mobile.Views.MyBookingsPage"
+             BackgroundColor="#F6F6F6">
+
+    <VerticalStackLayout Spacing="0">
+
+        <HorizontalStackLayout Padding="16" Spacing="12">
+
+            <Label Text="Rezervările mele"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   VerticalOptions="Center"/>
+
+            <Label Text="📋"
+                   FontSize="20"
+                   Grid.Column="1"
+                   VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+
+        <!-- LISTA REZERVARI -->
+        <CollectionView x:Name="BookingsView"
+                        Margin="0,10">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <!-- CARD REZERVARE -->
+                    <Frame Margin="12,8"
+                           Padding="14"
+                           CornerRadius="4"
+                           BackgroundColor="White"
+                           BorderColor="#DDDDDD"
+                           HasShadow="False">
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <!-- nume clasa -->
+                            <Label Text="{Binding GymClass.Name}"
+                                   FontSize="17"
+                                   FontAttributes="Bold"
+                                   TextColor="#212121"
+                                   LineBreakMode="TailTruncation"/>
+
+                            <!-- data + ora -->
+                            <Label FontSize="14"
+                                   TextColor="#616161">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding GymClass.Schedule, StringFormat='{0:dd MMM yyyy}'}"/>
+                                        <Span Text=" · "/>
+                                        <Span Text="{Binding GymClass.Schedule, StringFormat='{0:HH:mm}'}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <BoxView HeightRequest="1"
+                                     Color="#EEEEEE"
+                                     Margin="0,6"/>
+
+                            <!-- footer -->
+                            <Grid ColumnDefinitions="*,Auto"
+                                  VerticalOptions="Center">
+
+                                <Label Text="{Binding GymClass.Trainer.Name}"
+                                       FontSize="14"
+                                       FontAttributes="Italic"
+                                       TextColor="#757575"/>
+
+                                <Button Grid.Column="1"
+                                        Text="REMOVE"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        TextColor="#FF6B00"
+                                        BackgroundColor="Transparent"
+                                        Padding="8,4"
+                                        CommandParameter="{Binding .}"
+                                        Clicked="OnRemoveBookingClicked"/>
+                            </Grid>
+
+                        </VerticalStackLayout>
+                    </Frame>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

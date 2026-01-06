@@ -1,14 +1,69 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Shell
-    x:Class="FitCore.Mobile.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:FitCore.Mobile"
-    Title="FitCore.Mobile">
+    xmlns:views="clr-namespace:FitCore.Mobile.Views"
+    x:Class="FitCore.Mobile.AppShell"
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    Shell.NavBarHasShadow="False"
+    Shell.BackgroundColor="#263238"
+    Shell.TitleColor="White"
+    Shell.UnselectedColor="#999999"
 
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarTitleColor="#FF6B00"
+    Shell.TabBarUnselectedColor="#999999"
+    Shell.TabBarForegroundColor="#FF6B00">
+
+    <!-- HEADER GLOBAL -->
+    <Shell.TitleView>
+        <Grid BackgroundColor="#263238"
+              Padding="16"
+              ColumnSpacing="10"
+              ColumnDefinitions="Auto,*">
+
+            <Image Source="dumbbell.svg"
+                   WidthRequest="26"
+                   HeightRequest="26"/>
+
+            <Label Grid.Column="1"
+                   Text="FITCORE"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   Margin="10,0,0,0"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <!-- AUTH (fără tabbar) -->
+    <ShellContent Route="LoginPage"
+                  Shell.NavBarIsVisible="False"
+                  ContentTemplate="{DataTemplate views:LoginPage}" />
+
+    <ShellContent Route="RegisterPage"
+                  Shell.NavBarIsVisible="False"
+                  ContentTemplate="{DataTemplate views:RegisterPage}" />
+
+    <!-- MAIN TABS -->
+    <TabBar Route="MainTabs">
+
+        <ShellContent
+            Title="Home"
+            Icon="home.png"
+            Route="HomePage"
+            ContentTemplate="{DataTemplate views:HomePage}" />
+
+        <ShellContent
+            Title="Rezervări"
+            Icon="booking.png"
+            Route="MyBookingsPage"
+            ContentTemplate="{DataTemplate views:MyBookingsPage}" />
+
+        <ShellContent
+            Title="Profil"
+            Icon="user.png"
+            Route="ProfilePage"
+            ContentTemplate="{DataTemplate views:ProfilePage}" />
+
+    </TabBar>
 </Shell>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FitCore.Mobile.Views.LoginPage"
+    BackgroundColor="#EFEFEF">
+
+    <VerticalStackLayout>
+
+        <!-- CONTENT -->
+        <VerticalStackLayout Padding="28"
+                             Spacing="18">
+
+            <Label Text="Bun venit la FitCore"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#212121"/>
+
+            <Label Text="Autentifică-te pentru a continua"
+                   FontSize="14"
+                   TextColor="#666"/>
+
+            <!-- CARD LOGIN -->
+            <Frame Padding="20"
+                   CornerRadius="4"
+                   BackgroundColor="White"
+                   BorderColor="#D0D0D0"
+                   HasShadow="False">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Entry x:Name="EmailEntry"
+                           Placeholder="Email"
+                           Keyboard="Email"/>
+
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Parolă"
+                           IsPassword="True"/>
+
+                    <Button Text="LOGIN"
+                            BackgroundColor="#FF6B00"
+                            TextColor="White"
+                            HeightRequest="48"
+                            CornerRadius="2"
+                            Clicked="OnLogin"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Nu ai cont? Creează unul"
+                    BackgroundColor="Transparent"
+                    TextColor="#666"
+                    Clicked="OnGoToRegister"/>
+
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>

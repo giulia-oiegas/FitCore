@@ -1,15 +1,12 @@
-﻿namespace FitCore.Mobile
-{
-    public partial class App : Application
-    {
-        public App()
-        {
-            InitializeComponent();
-        }
+﻿namespace FitCore.Mobile;
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
-        }
+public partial class App : Application
+{
+    public static FitCore.Data.Models.Member? CurrentUser { get; set; }
+
+    public App()
+    {
+        InitializeComponent();
+        MainPage = new AppShell();
     }
 }
