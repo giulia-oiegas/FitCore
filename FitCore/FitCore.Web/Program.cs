@@ -19,7 +19,13 @@ builder.Services.AddRazorPages(options =>
 
 //adaugam suport pt api si ignoram buclele infinite (ex: relatia many to many antrenor <-> clasa)
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<FitCore.Data.FitCoreContext>(); 
+    .AddEntityFrameworkStores<FitCore.Data.FitCoreContext>();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 
 var app = builder.Build();
 
@@ -36,6 +42,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

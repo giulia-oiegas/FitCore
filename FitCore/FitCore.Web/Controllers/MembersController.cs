@@ -1,4 +1,4 @@
-using FitCore.Data;
+﻿using FitCore.Data;
 using FitCore.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

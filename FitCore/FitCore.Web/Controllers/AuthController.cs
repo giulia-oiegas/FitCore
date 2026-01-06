@@ -1,4 +1,4 @@
-namespace FitCore.Web.Controllers;
+﻿namespace FitCore.Web.Controllers;
 
 using FitCore.Data;
 using FitCore.Data.Models;
