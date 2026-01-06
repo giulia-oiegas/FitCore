@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace FitCore.Data.Models
 {
@@ -28,5 +29,19 @@ namespace FitCore.Data.Models
 
         //relatie: un membru poate avea mai multe rezervari
         public ICollection<Booking>? Bookings { get; set; }
+
+        public int? MembershipTypeId { get; set; }
+        public MembershipType? MembershipType { get; set; }
+
+        public DateTime? MembershipStartDate { get; set; }
+
+        [NotMapped]
+        public DateTime? MembershipEndDate =>
+            MembershipStartDate?.AddMonths(MembershipType?.DurationMonths ?? 0);
+
+        [NotMapped]
+        public bool HasActiveMembership =>
+            MembershipEndDate != null && MembershipEndDate > DateTime.Now;
+
     }
 }

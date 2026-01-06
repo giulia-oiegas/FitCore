@@ -1,10 +1,27 @@
-﻿namespace FitCore.Mobile
+﻿using FitCore.Data.Models;
+using Microsoft.Maui.Storage;
+using Plugin.LocalNotification;
+
+namespace FitCore.Mobile;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
+        InitializeComponent();
+
+        Dispatcher.Dispatch(async () =>
         {
-            InitializeComponent();
-        }
+            await LocalNotificationCenter.Current.RequestNotificationPermission();
+
+            if (Preferences.ContainsKey("UserId"))
+            {
+                await GoToAsync("//MainTabs/HomePage");
+            }
+            else
+            {
+                await GoToAsync("//LoginPage");
+            }
+        });
     }
 }

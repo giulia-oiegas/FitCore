@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitCore.Data.Models
 {
@@ -28,5 +29,23 @@ namespace FitCore.Data.Models
 
         //relatie: o clasa poate avea mai multe rezervari
         public ICollection<Booking>? Bookings { get; set; }
+
+        [NotMapped]
+        public string TimeInterval =>
+            $"{Schedule:HH:mm} - {Schedule.AddMinutes(DurationMinutes):HH:mm}";
+
+        [NotMapped]
+        public int BookedSeats =>
+            Bookings?.Count ?? 0;
+
+        [NotMapped]
+        public string CapacityText =>
+            $"Locuri: {MaxCapacity - BookedSeats} / {MaxCapacity}";
+
+
+        [NotMapped]
+        public string Date =>
+            Schedule.ToString("dddd, dd MMMM yyyy", CultureInfo.CurrentCulture);
+
     }
 }

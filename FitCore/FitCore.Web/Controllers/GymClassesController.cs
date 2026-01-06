@@ -22,6 +22,33 @@ namespace FitCore.Web.Controllers
         {
             return await _context.GymClasses
                 .Include(c => c.Trainer) //incarcam si antrenorii asociati fiecarei clase
+                .Include(c => c.Bookings)
+                .ToListAsync();
+        }
+
+        [HttpGet("future")]
+        public async Task<List<GymClass>> GetFutureClasses()
+        {
+            return await _context.GymClasses
+                .Include(c => c.Trainer)
+                .Where(c => c.Schedule > DateTime.Now)
+                .OrderBy(c => c.Schedule)
+                .ToListAsync();
+        }
+
+        [HttpGet("by-date")]
+        public async Task<List<GymClass>> GetClassesByDate(
+        [FromQuery] DateTime? date)
+        {
+            var targetDate = date?.Date ?? DateTime.Today;
+            var nextDay = targetDate.AddDays(1);
+
+            return await _context.GymClasses
+                .Include(c => c.Trainer)
+                .Where(c =>
+                    c.Schedule >= targetDate &&
+                    c.Schedule < nextDay)
+                .OrderBy(c => c.Schedule)
                 .ToListAsync();
         }
     }
