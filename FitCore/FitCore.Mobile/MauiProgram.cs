@@ -60,7 +60,7 @@ namespace FitCore.Mobile
 
                 return new HttpClient(handler)
                 {
-                    BaseAddress = new Uri("https://10.0.2.2:7132/")
+                    BaseAddress = new Uri("https://10.0.2.2:5251/")
                 };
             });
 
