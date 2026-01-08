@@ -52,15 +52,10 @@ namespace FitCore.Mobile
 
             builder.Services.AddSingleton(sp =>
             {
-                var handler = new HttpClientHandler
-                {
-                    ServerCertificateCustomValidationCallback =
-                        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
-                };
 
-                return new HttpClient(handler)
+                return new HttpClient
                 {
-                    BaseAddress = new Uri("https://10.0.2.2:5251/")
+                    BaseAddress = new Uri("http://10.0.2.2:5251/")
                 };
             });
 
